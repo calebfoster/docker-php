@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
         libmemcached-dev \
         libxml2-dev \
         libssl-dev \
+        curl \
+        nano \
     && docker-php-ext-install \
         iconv \
         mbstring \
@@ -25,7 +27,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd \
     && pecl install xdebug && docker-php-ext-enable xdebug \
 #    && pecl install mongodb && docker-php-ext-enable mongodb \
-    && pecl install redis && docker-php-ext-enable redis
+    && pecl install redis && docker-php-ext-enable redis \
 #    && yes '' | pecl install imagick && docker-php-ext-enable imagick
-
-# docker build -tag calebfoster/php-fpm:7.1-fpm .
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
